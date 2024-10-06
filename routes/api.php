@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::prefix('animal')->group(function() {
+Route::middleware('jwt.auth')->prefix('animal')->group(function() {
     Route::get('/', [App\Http\Controllers\AnimalController::class, 'index']);
     Route::get('/search', [App\Http\Controllers\AnimalController::class, 'search']);
     Route::post('/create', [App\Http\Controllers\AnimalController::class, 'create']);
     Route::put('/update/{animal}', [App\Http\Controllers\AnimalController::class, 'update']);
     Route::delete('/delete/{animal}', [App\Http\Controllers\AnimalController::class, 'delete']);
 });
+
+Route::middleware('jwt.auth')->group(function() {
+    Route::post('/refresh', [App\Http\Controllers\AuthController::class, 'refresh'])->name('refresh');
+    Route::post('/me', [App\Http\Controllers\AuthController::class, 'me']);
+    Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+});
+
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');

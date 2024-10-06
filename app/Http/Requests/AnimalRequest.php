@@ -53,9 +53,9 @@ class AnimalRequest extends FormRequest
      */
     public function messages() {
         return [
-            "code.required" => "O código de identificação do animal é obrigatório.",
-            "code.unique"   => "O código de identificação do animal deve ser único, e já existe outro animal com este código.",
-            "code.size"     => "O código de identificação do animal deve conter 4 dígitos.",
+            "code.required" => "O campo code é obrigatório.",
+            "code.unique"   => "O campo code deve ser único, e já existe outro animal com este código.",
+            "code.size"     => "O campo code deve conter 4 dígitos.",
             "required"      => "O campo :attribute é obrigatório.",
             "numeric"       => "O campo :attribute deve ser do tipo numérico.",
             "date"          => "O campo :attribute deve ser do tipo data.",

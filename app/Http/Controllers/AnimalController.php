@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
+    // list all animals
     public function index() {
         $animals = Animal::all();
 
         return response()->json($animals);
     }
 
+    // search animal by code
     public function search(Request $request) {
         $query = $request->input("code");
         $animal = Animal::where("code", "like", "%$query%")->first();
@@ -22,6 +24,7 @@ class AnimalController extends Controller
         return response()->json($animal);
     }
 
+    // create a new animal register
     public function create(AnimalRequest $request, Animal $animal) {
         try {
             $request["born"] = Carbon::createFromFormat("d/m/Y", $request["born"]);
@@ -35,6 +38,7 @@ class AnimalController extends Controller
         }
     }
 
+    // update existent animal
     public function update(AnimalRequest $request, Animal $animal) {
         try {
             $request["born"] = Carbon::createFromFormat("d/m/Y", $request["born"]);
@@ -50,6 +54,7 @@ class AnimalController extends Controller
         }
     }
 
+    // delete animal by id
     public function delete(Animal $animal) {
         $animal->delete();
 
