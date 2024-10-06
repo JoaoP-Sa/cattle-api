@@ -12,4 +12,11 @@ class AnimalController extends Controller
 
         return response()->json($animals);
     }
+
+    public function search(Request $request) {
+        $query = $request->input("code");
+        $animal = Animal::where("code", "like", "%$query%")->first();
+
+        return response()->json($animal);
+    }
 }
