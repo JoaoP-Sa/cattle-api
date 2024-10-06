@@ -34,4 +34,19 @@ class AnimalController extends Controller
             return response()->json($e->getMessage());
         }
     }
+
+    public function update(AnimalRequest $request, Animal $animal) {
+        try {
+            $request['born'] = Carbon::createFromFormat('d/m/Y', $request['born']);
+
+            $data = $request->all();
+
+            $animal->fill($data);
+            $animal->save();
+
+            return response()->json(['message' => 'O cadastro do animal foi atualizado com sucesso.']);
+        } catch (\Throwable $e) {
+            return response()->json($e->getMessage());
+        }
+    }
 }

@@ -25,13 +25,24 @@ class AnimalRequest extends FormRequest
      */
     public function rules()
     {
+        $code = null;
+
+        switch ($this->method()) {
+            case "POST":
+                $code = "required|unique:animals,code|size:4";
+                break;
+            case "PUT":
+                $code = "required|unique:animals,code,".$this->id."|size:4";
+                break;
+        }
+
         return [
-            'code'         => 'required|unique:animals,code|size:4',
-            'milk'         => 'numeric',
-            'food'         => 'required|numeric',
-            'weight'       => 'required|numeric',
-            'born'         => 'required|date',
-            'shooted_down' => 'boolean'
+            "code"         => $code,
+            "milk"         => "numeric",
+            "food"         => "required|numeric",
+            "weight"       => "required|numeric",
+            "born"         => "required|date",
+            "shooted_down" => "boolean"
         ];
     }
 
@@ -42,13 +53,13 @@ class AnimalRequest extends FormRequest
      */
     public function messages() {
         return [
-            'code.required' => 'O código de identificação do animal é obrigatório.',
-            'code.unique'   => 'O código de identificação do animal deve ser único, e já existe outro animal com este código.',
-            'code.size'     => 'O código de identificação do animal deve conter 4 dígitos.',
-            'required'      => 'O campo :attribute é obrigatório.',
-            'numeric'       => 'O campo :attribute deve ser do tipo numérico.',
-            'date'          => 'O campo :attribute deve ser do tipo data.',
-            'boolean'       => 'O campo :attribute deve ser do tipo booleano.'
+            "code.required" => "O código de identificação do animal é obrigatório.",
+            "code.unique"   => "O código de identificação do animal deve ser único, e já existe outro animal com este código.",
+            "code.size"     => "O código de identificação do animal deve conter 4 dígitos.",
+            "required"      => "O campo :attribute é obrigatório.",
+            "numeric"       => "O campo :attribute deve ser do tipo numérico.",
+            "date"          => "O campo :attribute deve ser do tipo data.",
+            "boolean"       => "O campo :attribute deve ser do tipo booleano."
         ];
     }
 
@@ -56,8 +67,8 @@ class AnimalRequest extends FormRequest
         $errors = $validator->errors();
 
         $response = response()->json([
-            'message' => 'Foram encontrados um ou mais erros nas informações enviadas.',
-            'errors' => $errors->messages(),
+            "message" => "Foram encontrados um ou mais erros nas informações enviadas.",
+            "errors" => $errors->messages(),
         ], 422);
 
         throw new HttpResponseException($response);
