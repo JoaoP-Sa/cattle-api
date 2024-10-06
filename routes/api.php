@@ -21,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('animal')->group(function() {
     Route::get('/', [App\Http\Controllers\AnimalController::class, 'index']);
     Route::get('/search', [App\Http\Controllers\AnimalController::class, 'search']);
+    Route::post('/create', [App\Http\Controllers\AnimalController::class, 'create']);
 });
