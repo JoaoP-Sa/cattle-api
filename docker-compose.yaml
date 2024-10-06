@@ -1,6 +1,6 @@
  db:
   image: mysql:5.7
-  container_name: mysql
+  container_name: cattle-db
   restart: always
   ports:
    - "3310:3306"

@@ -18,7 +18,14 @@ class AnimalController extends Controller
 
     // search animal by code
     public function search(Request $request) {
-        $query = $request->input("code");
+        if ($request->input('id')) {
+            $animal = Animal::find($request->id);
+            return response()->json($animal);
+        }
+
+        $query = $request->input('code');
+
+        $animal = Animal::query();
         $animal = Animal::where("code", "like", "%$query%")->first();
 
         return response()->json($animal);
@@ -59,5 +66,17 @@ class AnimalController extends Controller
         $animal->delete();
 
         return response()->json(["message" => "O registro deste animal foi excluído com sucesso."]);
+    }
+
+    // shoot down an alive animal
+    public function shootDown(Animal $animal) {
+        if (!$animal->shooted_down) {
+            $animal->shooted_down = true;
+            $animal->save();
+
+            return response()->json(["message" => "O animal foi abatido com sucesso."]);
+        }
+
+        return response()->json(["message" => "Este animal já foi abatido."]);
     }
 }

@@ -20,6 +20,7 @@ Route::middleware('jwt.auth')->prefix('animal')->group(function() {
     Route::post('/create', [App\Http\Controllers\AnimalController::class, 'create']);
     Route::put('/update/{animal}', [App\Http\Controllers\AnimalController::class, 'update']);
     Route::delete('/delete/{animal}', [App\Http\Controllers\AnimalController::class, 'delete']);
+    Route::post('/shoot-down/{animal}', [App\Http\Controllers\AnimalController::class, 'shootDown']);
 });
 
 Route::middleware('jwt.auth')->group(function() {

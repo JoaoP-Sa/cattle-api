@@ -14,7 +14,6 @@ class Animal extends Model
         'milk',
         'food',
         'weight',
-        'born',
-        'shooted_down'
+        'born'
     ];
 }
