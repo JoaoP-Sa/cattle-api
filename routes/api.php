@@ -23,4 +23,5 @@ Route::prefix('animal')->group(function() {
     Route::get('/search', [App\Http\Controllers\AnimalController::class, 'search']);
     Route::post('/create', [App\Http\Controllers\AnimalController::class, 'create']);
     Route::put('/update/{animal}', [App\Http\Controllers\AnimalController::class, 'update']);
+    Route::delete('/delete/{animal}', [App\Http\Controllers\AnimalController::class, 'delete']);
 });
