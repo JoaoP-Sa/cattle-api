@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('jwt.auth')->prefix('animal')->group(function() {
+Route::middleware('jwt.auth')->prefix('animal')->group(function () {
     Route::get('/', [App\Http\Controllers\AnimalController::class, 'index']);
     Route::get('/search', [App\Http\Controllers\AnimalController::class, 'search']);
     Route::post('/create', [App\Http\Controllers\AnimalController::class, 'create']);
@@ -23,7 +23,7 @@ Route::middleware('jwt.auth')->prefix('animal')->group(function() {
     Route::put('/shoot-down/{animal}', [App\Http\Controllers\AnimalController::class, 'shootDown']);
 });
 
-Route::middleware('jwt.auth')->group(function() {
+Route::middleware('jwt.auth')->group(function () {
     Route::post('/refresh', [App\Http\Controllers\AuthController::class, 'refresh'])->name('refresh');
     Route::post('/me', [App\Http\Controllers\AuthController::class, 'me']);
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
@@ -31,3 +31,11 @@ Route::middleware('jwt.auth')->group(function() {
 
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+
+Route::get('/swagger.json', function () {
+    return response()->file(public_path('swagger.json'));
+})->middleware('cors');
+
+Route::get('/documentation', function () {
+    return view('swagger-ui');
+});

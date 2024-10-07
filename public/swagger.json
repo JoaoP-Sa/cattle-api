@@ -1,0 +1,1124 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Cattle API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/animal": {
+            "get": {
+                "summary": "List all animals",
+                "operationId": "23df7e20e1400d97781d01622f3e0046",
+                "responses": {
+                    "200": {
+                        "description": "A list of animals",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "code": {
+                                                "type": "string"
+                                            },
+                                            "milk": {
+                                                "type": "number"
+                                            },
+                                            "food": {
+                                                "type": "number"
+                                            },
+                                            "weight": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "born": {
+                                                "type": "string",
+                                                "format": "date"
+                                            },
+                                            "shooted_down": {
+                                                "type": "integer"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/animal/search": {
+            "get": {
+                "summary": "Get animal by id or by code",
+                "operationId": "5bb63f631939c98480f725a76c31c20f",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Code of the animal to search",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the animal to search",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Animal details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Unique identifier for the animal",
+                                            "type": "integer",
+                                            "format": "int"
+                                        },
+                                        "code": {
+                                            "description": "Animal's code",
+                                            "type": "string"
+                                        },
+                                        "milk": {
+                                            "description": "Daily milk production in liters",
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "food": {
+                                            "description": "Daily food consumption in kilograms",
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "weight": {
+                                            "description": "Weight of the animal in arrobas",
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "born": {
+                                            "description": "Date of birth of the animal",
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "shooted_down": {
+                                            "description": "Indicates if the animal has been shot down (1 for yes, 0 for no)",
+                                            "type": "integer",
+                                            "format": "int"
+                                        },
+                                        "created_at": {
+                                            "description": "Date when the animal was created",
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date when the animal was last updated",
+                                            "type": "string",
+                                            "format": "date"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/animal/create": {
+            "post": {
+                "summary": "Create a new animal register",
+                "operationId": "3bc82b66202daa9fa70998e7c2a113f1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "description": "Animal's code",
+                                        "type": "string"
+                                    },
+                                    "milk": {
+                                        "description": "Animal's daily milk production (in liters, if it produces)",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "food": {
+                                        "description": "Animal's daily food consume (in kilograms)",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "weight": {
+                                        "description": "Animal's weight (in arrobas)",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "born": {
+                                        "description": "Animal's born date",
+                                        "type": "string",
+                                        "example": "01/01/2000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "O animal foi cadastrado com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Foram encontrados um ou mais erros nas informações enviadas."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo code deve ser único, e já existe outro animal com este código."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/animal/update/{animal}": {
+            "put": {
+                "summary": "Update existent animal",
+                "operationId": "2b9a6568a2336f256e1af1133bebe4ad",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "description": "Animal's code",
+                                        "type": "string"
+                                    },
+                                    "milk": {
+                                        "description": "Animal's daily milk production (in liters, if it produces)",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "food": {
+                                        "description": "Animal's daily food consume (in kilograms)",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "weight": {
+                                        "description": "Animal's weight (in arrobas)",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "born": {
+                                        "description": "Animal's born date",
+                                        "type": "string",
+                                        "example": "01/01/2000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "O cadastro do animal foi atualizado com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Foram encontrados um ou mais erros nas informações enviadas."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo code deve ser único, e já existe outro animal com este código."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/animal/delete/{animal}": {
+            "delete": {
+                "summary": "Delete animal",
+                "operationId": "9217404cd5060adbd2ad8964b9e36225",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "O registro deste animal foi excluído com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Animal not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Animal] 1"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/home/joao/Documents/laravel/projects/cattle-api/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 385
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "file": {
+                                                        "type": "string",
+                                                        "example": "/home/joao/Documents/laravel/projects/cattle-api/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php"
+                                                    },
+                                                    "line": {
+                                                        "type": "integer",
+                                                        "example": 332
+                                                    },
+                                                    "function": {
+                                                        "type": "string",
+                                                        "example": "prepareException"
+                                                    },
+                                                    "class": {
+                                                        "type": "string",
+                                                        "example": "Illuminate\\\\Foundation\\\\Exceptions\\\\Handler"
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "->"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/animal/shoot-down/{animal}": {
+            "put": {
+                "summary": "Shoot down an alive animal",
+                "operationId": "bd1e995ab686285fc014f7fd113f75d1",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "O foi abatido com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Animal not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Animal] 1"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/home/joao/Documents/laravel/projects/cattle-api/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 385
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "file": {
+                                                        "type": "string",
+                                                        "example": "/home/joao/Documents/laravel/projects/cattle-api/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php"
+                                                    },
+                                                    "line": {
+                                                        "type": "integer",
+                                                        "example": 332
+                                                    },
+                                                    "function": {
+                                                        "type": "string",
+                                                        "example": "prepareException"
+                                                    },
+                                                    "class": {
+                                                        "type": "string",
+                                                        "example": "Illuminate\\\\Foundation\\\\Exceptions\\\\Handler"
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "->"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "summary": "Create a new user account",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "User name",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "O novo registro foi criado com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Foram encontrados um ou mais erros nas informações enviadas."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo email deve ser único, e já existe um usuário com este email"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "summary": "Authenticate account",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcyODI5NDM2MSwiZXhwIjoxNzI4Mjk3OTYxLCJuYmYiOjE3MjgyOTQzNjEsImp0aSI6IkNLaUgzOGVwaFZwb1VoYTQiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.UyRY2hgZ3ebI8_7IypyzZ-dmiE3nwWvx6LrOc98hbNs"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "post": {
+                "summary": "Get authenticated user info",
+                "operationId": "3fc3f2f762fb3c5ecf211fcb0d4f81ff",
+                "responses": {
+                    "200": {
+                        "description": "User details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "joao"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "teste@email.com"
+                                        },
+                                        "email_verified_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": null,
+                                            "nullable": true
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-10-06T17:19:42.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-10-06T17:19:42.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "summary": "Make logout",
+                "operationId": "fe8f3429cd6979b3b4517e186505f9f9",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Deslogado com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/refresh": {
+            "post": {
+                "summary": "Make refresh",
+                "operationId": "2c27d311a2876560fcb5a754b556cdc5",
+                "responses": {
+                    "200": {
+                        "description": "Successful refresh",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcyODI5NDM2MSwiZXhwIjoxNzI4Mjk3OTYxLCJuYmYiOjE3MjgyOTQzNjEsImp0aSI6IkNLaUgzOGVwaFZwb1VoYTQiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.UyRY2hgZ3ebI8_7IypyzZ-dmiE3nwWvx6LrOc98hbNs"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token has expired",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token has expired"
+                                        },
+                                        "exception": {
+                                            "type": "string",
+                                            "example": "Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\UnauthorizedHttpException"
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": "/path/to/file.php"
+                                        },
+                                        "line": {
+                                            "type": "integer",
+                                            "example": 74
+                                        },
+                                        "trace": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "example": {
+                                                    "file": "/path/to/file.php",
+                                                    "line": 30,
+                                                    "function": "authenticate"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

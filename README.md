@@ -51,3 +51,36 @@ no postman, ele já vai conter uma collection com todas as requisições da api 
 parâmetros definidos para que o usuário já possa testar a aplicação sem precisar configurar tudo do
 zero. No entanto, é possível encontrar também no swagger os endpoints e os parâmetros de header
 e body que cada endpoint utiliza, além dos próprios endpoints que a aplicação possui
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+**Usando a aplicação**
+
+Normalmente ao iniciar a aplicação ela rodará na porta 8000 do localhost, embora possa acontecer
+dela rodar em outras portas caso essa já esteja ocupada.
+
+Não é recomendado que tente usar a aplicação usando o ip 127.0.0.1 caso vá tentar utilizar algum
+endpoint pelo navegador devido a problemas no CORS, no entanto esse tipo de problema não ocorre
+utilizando o postman ou qualquer outra aplicação que faz requisições HTTP, como o insomnia por exemplo.
+
+Temos 2 principais endpoints em nossa aplicação, que são:
+
+http://localhost:8000/api
+http://localhost:8000/api/animal
+
+e todos os outros endpoints são derivados de algum desses 2. Dentro da aplicação é possível
+encontrar todos os endpoints existentes em: http://localhost:8000/api/documentation, ela mostra
+os endpoints existentes, os parâmetros ou query params esperados, e o método solicitado (get, post,
+put, delete).
+
+Para utilizar qualquer funcionalidade do sistema é necessário criar uma conta e fazer a autenticação
+nela nos endpoints abaixo:
+
+Registro: http://127.0.0.1:8000/api/register
+Autenticação: http://127.0.0.1:8000/api/login
+
+As rotas acima são as únicas que não necessitam de autenticação para serem usadas. Após feita a 
+autenticação será possível utilizar todos os outros endpoints do sistema, contanto que o token 
+fornecido na autenticação seja utilizado no Authorization dentro do header de todas as outras requisições.
+
+OBS: sempre que for inserir o token deve-se colocar o "Bearer" antes de inserir a chave fornecida.
