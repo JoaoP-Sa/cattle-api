@@ -49,8 +49,7 @@ rodar o comando "composer install" e nem o comando "php artisan key:generate"
 Na raiz deste projeto existe um arquivo chamado cattle_postman_collection.json que pode ser importado
 no postman, ele já vai conter uma collection com todas as requisições da api já configuradas e com
 parâmetros definidos para que o usuário já possa testar a aplicação sem precisar configurar tudo do
-zero. No entanto, é possível encontrar também no swagger os endpoints e os parâmetros de header
-e body que cada endpoint utiliza, além dos próprios endpoints que a aplicação possui
+zero.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
