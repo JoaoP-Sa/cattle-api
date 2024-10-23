@@ -72,11 +72,26 @@ e todos os outros endpoints são derivados de algum desses 2.
 Para utilizar qualquer funcionalidade do sistema é necessário criar uma conta e fazer a autenticação
 nela nos endpoints abaixo:
 
-Registro: http://127.0.0.1:8000/api/register
-Autenticação: http://127.0.0.1:8000/api/login
+    - Registro: http://127.0.0.1:8000/api/register
+
+    - Autenticação: http://127.0.0.1:8000/api/login
 
 As rotas acima são as únicas que não necessitam de autenticação para serem usadas. Após feita a 
 autenticação será possível utilizar todos os outros endpoints do sistema, contanto que o token 
 fornecido na autenticação seja utilizado no Authorization dentro do header de todas as outras requisições.
 
 OBS: sempre que for inserir o token deve-se colocar o "Bearer" antes de inserir a chave fornecida.
+
+As demais rotas do sistema (que necessitam de autenticação, como já mencionado acima) são as seguintes:
+
+    - Lista todos os animais: http://127.0.0.1:8000/api/animal
+
+    - Busca um animal específico pelo id ou pelo código único: http://127.0.0.1:8000/api/animal/search?code={codigo}&id={id}
+    
+    - Cadastra um novo animal: http://127.0.0.1:8000/api/animal/create
+
+    - Atualiza o registro de um animal específico: http://127.0.0.1:8000/api/animal/update/{animal}
+
+    - Delete um animal específico do sistema: http://127.0.0.1:8000/api/animal/delete/{animal}
+
+    - Abate um animal específico: http://127.0.0.1:8000/api/animal/shoot-down/{animal}
